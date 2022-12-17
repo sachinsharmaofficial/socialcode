@@ -62,7 +62,7 @@ ROOT_URLCONF = 'SocialCode.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR, 'Templates'],
+        'DIRS': ['/opt/bitnami/apps/django/django_projects/goFiles/uploads/templates/'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
