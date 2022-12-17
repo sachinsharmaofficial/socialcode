@@ -1,0 +1,200 @@
+{% load static%}
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Social Code</title>
+
+    <!-- CDN -->
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+    <link rel="stylesheet" href=" {% static 'index1/style.css' %} ">
+
+
+</head>
+
+<body>
+    <!-- Navigation BAr -->
+    <nav>
+        <div class="container">
+            <h2 class="log">
+                Social Code
+            </h2>
+            <div class="search-bar">
+                <i class="uil uil-search"></i>
+                <input type="search" placeholder="Search For Fellow Programmers">
+
+            </div>
+
+            <div class="create" >
+                <label class="btn btn-primary post-bt" for="Create-Post">Write a Post</label>
+                <div class="profile-photo" onmouseover="setting()" >
+                    <img src="{{profile.image.url}}" alt="Jiten">
+                </div>
+            </div>
+        </div>
+
+
+        <!-- sETTINGS -->
+        <div class="settings">
+            <div class="settings-inner">
+
+                <div class="user">
+                    <div class="profile-photo">
+                        <img src="{{profile.image.url}}" alt="">
+                    </div>
+                    <div class="info">
+                        <h3>
+                            {{profile.first_name}} {{profile.last_name}}
+                        </h3>
+                        <small>
+                            <a href="#">See Your Profile</a>
+                        </small>
+                    </div>
+
+                </div>
+
+                <hr>
+
+                <div class="user">
+
+                    <i class="uil uil-feedback"></i>
+
+                    <div class="info">
+                        <h3>
+                            Give Feedback
+                        </h3>
+                        <small>
+                            <a href="#">Help us to improve our Services</a>
+                        </small>
+                    </div>
+
+                </div>
+
+                <hr>
+
+                <div class="settings-links">
+                    <i class="uil uil-at" id="vahar"></i>
+
+                    <div class="info">
+                        <a href="#">Contact Our Team</a><i class="uil uil-angle-right" id="my"></i>
+
+                    </div>
+                </div>
+                <div class="settings-links">
+                    <div class="a">
+                        <i class="uil uil-brackets-curly" id="vahar"></i>
+                    </div>
+
+                    <div class="info">
+                        <a href="#">Contribute to Social Code</a>
+                        
+                    </div>
+                    <div class="c">
+                    <i class="uil uil-angle-right" id="my"></i>
+                </div>
+                </div>
+                <div class="settings-links">
+                    <i class="uil uil-palette" id="vahar"></i>
+
+                    <div class="info design">
+                        <a id="theme" >Customize Your Theme</a><i class="uil uil-angle-right" id="my"></i>
+
+                    </div>
+                </div>
+
+                <hr>
+
+                <div class="user">
+                    
+                        <i class="uil uil-signout"></i>
+                    
+                    <div class="info">
+                        <h3>
+                            Sign Out
+                        </h3>
+                        <small>
+                            <a href="#">Sign Out Your Profile</a>
+                        </small>
+                    </div>
+
+                </div>
+                
+
+
+            </div>
+
+
+        </div>
+    </nav>
+
+
+
+    <script>
+        const settingtoggle = document.querySelector('.settings');
+        
+        function setting(){
+            
+            settingtoggle.classList.toggle("settings-height");
+        }
+        
+        // Theme 
+
+        var color = Number('{{profile.color}}');
+        var root = document.querySelector(':root');
+        root.style.setProperty("--primary-color-hue", color)
+        var bg = '{{profile.bg}}';
+        console.log(bg)
+        if (bg == 'bg1'){
+            root.style.setProperty("--dark-color-lightness", "17%");
+            root.style.setProperty("--white-color-lightness", "100%");
+            root.style.setProperty("--light-color-lightness", "95%");
+        }
+        else if(bg = 'bg2'){
+            root.style.setProperty("--dark-color-lightness", "95%");
+            root.style.setProperty("--white-color-lightness", "20%");
+            root.style.setProperty("--light-color-lightness", "15%");
+        }
+        else if(bg = 'bg3'){
+            root.style.setProperty("--dark-color-lightness", "95%");
+            root.style.setProperty("--white-color-lightness", "10%");
+            root.style.setProperty("--light-color-lightness", "0%");
+        }
+        var fsize = '{{profile.font_size}}';
+        let Size;
+        if (fsize == 'f1'){
+            Size = '10px';
+            root.style.setProperty('--sticky-top-left','5.4rem');
+            root.style.setProperty('--sticky-top-right','5.4rem');
+        }
+        else if (fsize == 'f2'){
+            Size = '13px';
+            root.style.setProperty('--sticky-top-left','5.4rem');
+            root.style.setProperty('--sticky-top-right','-7rem');
+        }
+        else if (fsize == 'f3'){
+            Size = '16px';
+            root.style.setProperty('--sticky-top-left','-2rem');
+            root.style.setProperty('--sticky-top-right','-17rem');
+        }
+        else if (fsize == 'f4'){
+            Size = '19px';
+            root.style.setProperty('--sticky-top-left','-5rem');
+            root.style.setProperty('--sticky-top-right','-25rem');
+        }
+        else if (fsize == 'f5'){
+            Size = '22px';
+            root.style.setProperty('--sticky-top-left','-12rem');
+            root.style.setProperty('--sticky-top-right','-35rem');
+        }
+        document.querySelector('html').style.fontSize = Size;
+    </script>
+    
+
+
+{% block content %}
+{% endblock content %}

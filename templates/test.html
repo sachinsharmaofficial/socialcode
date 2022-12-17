@@ -1,0 +1,110 @@
+
+{% load static %}
+
+{% block content %}
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    
+    <link rel="stylesheet" href="{% static 'authenticate/test.css' %}"> 
+    
+</head>
+<body>
+    
+    {% if  otp%}
+    <form method = "POST">
+        {% csrf_token %}
+        <h1>
+            VErify Your Mail
+        </h1>
+        
+        <input type="hidden" value= "{{user.username}}" name="name">
+        <input type="text" placeholder="Enter YOur OTP" name="otp">
+        <button type="submit">
+            Verify
+        </button>
+    </form>
+    {% else %}
+    
+    <div class="container" id="main">
+        <div class="form-container signup">
+            <form action="/logup/" method="post">
+                {% csrf_token %}
+                <!-- <span></span> -->
+                    <h1>Create Account</h1>
+                    <input type="text" placeholder="Username" name="Name">
+                    <input type="text" placeholder="First Name" name="fname">
+                    <input type="text" placeholder="Last Name" name="lname">
+                    <input type="email" placeholder="Email" name="Email">
+                    <input type="password" placeholder="Password" name="Password">
+                    <button type="submit" class="Sign-Up-bt">Sign Up</button>
+            </form>
+        </div>
+        <div class="form-container signin">
+            <form action="/login/" method="post">
+                {% csrf_token %}
+                <!-- <span></span> -->
+                    <h1>Sign In</h1>
+                    <span>Use your email for registration</span>
+                    <input type="text" placeholder="Username" name="name">
+                    <input type="email" placeholder="Email" name="email">
+                    <input type="password" placeholder="Password" name="password">
+                    <button type="submit" class="Sign-In-bt">Sign In</button>
+            </form>
+           
+        </div>
+        <div class="overlay-container">
+            <div class="overlay">
+                <div class="panel overlay-right">
+                    <h1>Welcome Back!</h1>
+                    <p>To keep connected with us please login with your personal info</p>
+                    <button class="ghost" id="signIn" onclick="turnleft()">Sign In</button>
+                </div>
+                <div class="panel overlay-left">
+                    <h1>Hello, Friend!</h1>
+                    <p>Enter your personal details and start journey with us</p>
+                    <button class="ghost" id="signUp" onclick="turnright()">Sign Up</button>
+                  </div>
+            </div> 
+        </div>
+    </div>  
+
+
+
+    <div class="forget">
+        <a href="{% url 'password_reset' %}"><button>
+            forget Password
+        </button></a>
+    
+    </a>
+    </div>
+
+    <div class="forget">
+        <a href="{% url 'logout' %}"><button>
+            logout
+        </button></a>
+    
+    </a>
+    </div>
+
+    {% endif %}
+    <script>
+        const con = document.getElementById("main")
+
+        function turnleft(){
+            con.setAttribute('class', 'container toggle')
+        }
+
+        function turnright(){
+            con.setAttribute('class', 'container')
+        }
+    </script>
+</body>
+</html>
+{% endblock content %}

@@ -1,0 +1,214 @@
+{% extends 'base.html' %}
+
+{% load static%}
+
+{% block content%}
+<!-- ------------The Main Section----------- -->
+
+<head>
+    <link rel="stylesheet" href="{% static 'assets3/style.css' %}">
+</head>
+<main>
+    <div class="profile-container">
+        <img src="{{profile.image.url}}" class="cover-img">
+        <div class="profile-details">
+            <div class="pd-left">
+                <div class="pd-row">
+                    <img src="{{profile.image.url}}" class="pd-img">
+
+                    <div>
+                        <h3>
+                            {{profile.first_name|title}} {{profile.last_name|title}}
+                        </h3>
+                        <p>@{{profile.user.username}} 
+                            
+                                           
+                        <p><br>
+                            <b>{{ posts_count }}</b>  Post     <b>{{followers_count}}</b>  Followers     <b>{{following_count}}</b>  Following  </p></p>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="pd-right">
+                
+            {% if profile.user == request.user %}
+                <a href="{% url 'editprofile'%}"><button type="button"> 
+                <i class="uil uil-ellipsis-h"></i>
+                Edit Your Profile
+            </button></a>
+            {% endif %} 
+
+
+            {% if profile.user != request.user%} 
+                {% if follow_status == True %}
+                <a href="{% url 'follow' profile.user 0 %}"><button type="button">
+                    <i class="uil uil-user-minus"></i>UnFollow</button></a>
+                {% else %}
+                <a href="{% url 'follow' profile.user 1 %}"><button type="button">
+                    <i class="uil uil-user-plus"></i> Follow</button></a>
+                {% endif %}
+                <button type="button">
+                    <i class="uil uil-message"></i>Message
+                </button>
+
+                <br>
+                {% endif %} 
+                <br><br>
+                {% if url_name == "profile" %}
+                <a href = "{%url 'profile' profile.user%}" type="button" style="color: green;">
+                    <i class="uil uil-camera"></i> {{profile.first_name}}'s  Post</a>
+                    {% else %}
+                  
+                    <a href = "{%url 'profile' profile.user%}" type="button" style="color: black;">
+                    <i class="uil uil-camera"></i> {{profile.first_name}}'s  Post</a>
+                    {% endif %}
+                    
+                    
+                    {% if url_name == "favourite"  %}
+                    <a href = "{%url 'favourite' profile.user%}" type="button" style="color: green;">
+                        <i class="uil uil-bookmark"></i></i>{{profile.first_name}}'s Saved Post
+                    </a>
+                    {% else %}
+                    <a href = "{%url 'favourite' profile.user%}" type="button" style="color: black;">
+                        <i class="uil uil-bookmark"></i></i>{{profile.first_name}}'s Saved Post
+                    </a>
+
+                {% endif %}
+              
+            </div>
+        </div>
+
+  
+        <div class="profile-info">
+            <div class="info-col">
+                <div class="pofile-intro">
+                    <h3>About</h3>
+                    <p class="bio">{{profile.bio}}</p>
+
+                    <hr>
+
+                    <ul>
+                        <li><i class="uil uil-user-location"></i>
+                            {{profile.location}}</li>
+                        <li><i class="uil uil-link-h"></i>{{profile.url}}</li>
+                    </ul>
+                    
+                </div>
+            </div>
+            <div class="post-col">
+
+                <!-- ----------Middle Side-------- -->
+
+                <div class="middle">
+                    <!----------------FEEDS------------------------------- -->
+                    <div class="feeds">
+                        {% for post in posts %}
+                        <!-- Post 1 -->
+                        <div class="feed">
+                            <div class="head">
+                                <div class="user">
+                                    
+                                        <div class="profile-photo">
+                                            {% for post_photo in profiles %}
+                                            {% if post_photo.user == post.user %}
+                                                <img src="{{post_photo.image.url}}" alt="">
+                                            {% endif %}
+                                            {% endfor %}
+                                        </div>
+                                    
+                                    <div class="info">
+                                        <h3>
+                                            {{post.user.username}}
+                                        </h3>
+                                        <small>
+                                            {{post.posted | date:"d M,Y"}}
+                                        </small>
+                                    </div>
+                                </div>
+                                <span class="edit">
+                                    <i class="uil uil-ellipsis-h"></i>
+                                </span>
+                            </div>
+                            <br>
+                            <div class="caption">
+                                <p>{{post.caption}}
+                                    <br>
+                                    {% for tag in post.tags.all %}
+                                    <b><a href="{{tag.get_absolute_url}}">#{{tag}} </a></b>
+                                    {%endfor%}
+                                </p>
+
+                            </div>
+                            
+                            <div class="photo">
+                              
+
+                                <a href="{% url 'post-details' post.id%}"><img src="{{ post.picture.url}}" alt=""></a>
+                            </div>
+
+                            <div class="action-button">
+                                <div class="interaction-buttons">
+                                    <span>
+                                            <a href="{% url 'like' post.id %}" target='_blank'>
+                                    <i class="uil uil-thumbs-up"></i>
+                                </a>
+                                    </span>
+                                    <span>
+                                        <i class="uil uil-comment-alt-lines"></i>
+                                    </span>
+                                    <span>
+                                        <i class="uil uil-share"></i>
+                                    </span>
+
+                                </div>
+                                <div class="bookmark">
+                                    <span>
+                                        <a href="{% url 'post-favourite' post.id %}" target='_blank'>                           <i class="uil uil-bookmark"></i>
+                                        </a>                      </span>
+                                </div>
+                            </div>
+
+                            <div class="liked-by">
+                                <span>
+                                    <img src="Sachin.jpg" alt="">
+                                </span>
+                                <span>
+                                    <img src="jiten.jpg" alt="">
+                                </span>
+                                <span>
+                                    <img src="ishan.jpg" alt="">
+                                </span>
+                                <p>Liked by <b>Ishan Aggarwal</b> and <b>{{ post.likes }} others</b></p>
+                                {% comment %} <p>Liked by <b>Ishan Aggarwal</b> and <b>278 others</b></p> {% endcomment %}
+                            </div>
+
+                            <div class="caption">
+                                <p><b>Sachin Sharma</b> working hard <span class="harh-tag"> #Enjoy </span></p>
+                            </div>
+                            <div class="comments text-muted">
+                                View all 288 comments
+                            </div>
+                        </div>
+
+                        {% endfor %}
+                        <!-- Enf OF Post -->
+
+                    </div>
+                </div>
+            
+            </div>
+
+
+        </div>
+    </div>
+</main>
+
+
+
+
+
+<!-- <script src="./color.js"></script>  -->
+<script src=" {% static 'assets/index.js' %} "></script>
+
+{% endblock content %}
