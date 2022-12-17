@@ -1,0 +1,174 @@
+
+/*-------------------Main section------------------------------ */
+
+
+
+.profile-container{
+    padding: 20px 10%;
+    color: #626262;
+}
+
+.cover-img{
+    width: 100%;
+    height: 60vh;
+    margin-bottom: 14px;
+}
+
+.profile-details{
+
+  display: flex;
+  padding: 20px;
+  border-radius: 4px;
+    align-items: flex-start;
+    justify-content: space-between;
+
+    background: var(--color-white);
+    border-radius: var(--card-border-radius);
+    padding: var(--card-padding);
+    margin: 1rem 0;
+    font-size: 0.85rem;
+    line-height: 1.5;
+}
+
+.pd-row{
+  display:flex;
+  align-items: flex-start;
+}
+
+.pd-img{
+  width: 100px;
+  margin-right: 20px;
+  border-radius: 50%;
+  
+}
+
+.pd-row div h3{
+  font-size: 25px;
+  font-weight: 600;
+}
+.pd-row div p{
+  font-size: 13px;
+  }
+
+
+
+.pd-right button{
+  background: #1876f2;
+  border: 0;
+  outline: 0;
+  padding: 6px 10px;
+  display: inline-flex;
+  align-items: center;
+  color: #fff;
+  border-radius: 3px;
+  margin-left: 10px;
+  cursor: pointer;
+}
+
+.pd-right button i{
+  font-size: 1.4rem;
+  margin-left: 10px;
+  position: relative;
+  border-radius: 16px;
+
+  margin-right: 10px;
+}
+
+.pd-right button:first-child{
+  background: #e4e6eb;
+  color: #000;
+}
+
+.profile-info{
+  display: flex;
+  align-self: flex-start;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.info-col{
+  flex-basis: 33%;
+  /* margin-top: 20px ; */
+}
+.post-col{
+  flex-basis: 65%;
+}
+
+.pofile-intro{
+  background: var(--color-white);
+  border-radius: var(--card-border-radius);
+  padding: var(--card-padding);
+  margin: 1rem 0;
+  font-size: 0.85rem;
+  line-height: 1.5;
+}
+
+.pofile-intro h3{
+  font-weight: 600;
+} 
+.bio{
+  margin: 10px 0;
+  font-size: 15px;
+  
+}
+
+.pofile-intro hr{
+  border: 0;
+  height: 1px;
+  background: #ccc;
+  margin: 24px 0;
+}
+
+.pofile-intro ul li{
+  list-style: none;
+  font-size: 15px;
+  margin: 15px 0;
+  display: flex;
+  align-items: center;
+}
+
+.pofile-intro ul li i{
+  width: 26px;
+  margin-right: 10px;
+  font-size: 1.4rem;
+  margin-left: 10px;
+  position: relative;
+  border-radius: 16px;
+}
+
+/* REsponsive for PRofile Page */
+
+@media (max-width:900px){
+  .profile-container{
+    padding: 20px 5%;
+  }
+  .profile-details{
+    flex-wrap: wrap;
+  }
+  .pd-right{
+    text-align: left;
+    margin-top: 15px;
+  }
+
+  .pd-right button{
+    margin-left: 0;
+    margin-right: 10px;
+  }
+
+  .pd-row div h3{
+    font-size: 16px;
+  }
+  .cover-img{
+    width: 100%;
+    height: 30vh;
+    margin-bottom: 14px;
+}
+
+  .profile-info{
+    flex-wrap: wrap;
+  }
+  .info-col, .post-col{
+    flex-basis: 100%;
+  }
+
+}

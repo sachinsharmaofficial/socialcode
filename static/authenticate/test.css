@@ -1,0 +1,198 @@
+*{
+    margin: 0;
+    padding: 0;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode';
+    box-sizing: border-box;
+}
+/* For Basic Structure */
+body{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 100vh;
+    background: #23242a;
+    align-items: center;
+    margin: -20px 0 50px;
+}
+h1{
+    font-weight: bold;
+    margin: 0;
+}
+
+p{
+    font-size: 14px;
+    font-weight: 100;
+    line-height: 20px;
+    letter-spacing: 0.5px;
+    margin: 20px 0 30px;
+}
+span{
+    font-size: 12px;
+}
+a{
+    color: #333;
+    font-size: 14px;
+    text-decoration: none;
+    margin: 15px 0;
+}
+/* For Containers */
+.container{
+    position: relative;
+    width: 90%;
+    height: 600px;
+    background: #1c1c1c;
+    border-radius: 50px;
+    overflow: hidden; 
+}
+
+/* For Form */
+.form-container form{
+    display: flex;
+    flex-direction: column;
+    padding: 0 50px;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background: #1c1c1c;
+}
+.form-container input{
+    border: none;
+    padding: 12px 15px;
+    margin: 8px 0;
+    width: 100%;
+}
+.form-container{
+
+    position: absolute;
+    top: 0;
+    height: 100%;
+    transition: all 0.6s ease-in-out;
+}
+.signin{
+    left: 0;
+    width: 50%;
+    z-index: 2;
+}
+.signup{
+    left: 0;
+    width: 50%;
+    opacity: 0;
+    z-index: 1;
+}
+
+/* For Overlay */
+
+.overlay-container{
+    position: absolute;
+	top: 0;
+	left: 50%;
+	width: 50%;
+	height: 100%;
+	overflow: hidden;
+	transition: transform 0.6s ease-in-out;
+	z-index: 100;
+}
+.overlay{
+    background: #45f3ff ;
+	/* background: -webkit-linear-gradient(to right, #FF4B2B, #FF416C); */
+	background: linear-gradient(to right, #45f3ff , #45f3ff);
+ 
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: 0 0;
+	color: #FFFFFF;
+	position: relative;
+	left: -100%;
+	height: 100%;
+	width: 200%;
+  	transform: translateX(0);
+	transition: transform 0.6s ease-in-out;
+}
+.panel{
+    position: absolute;
+    top: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 0 40px;
+    height: 100%;
+    width: 50%;
+    text-align: center;
+    transform: translateX(0);
+    transition: transform 0.6s ease-in-out;
+}
+.overlay-right{
+    right: 0;
+    transform: translateX(0);
+}
+.overlay-left{
+    transform: translateX(0);
+
+}
+
+/* For Animation */
+/* Move sign In to right through javascript */
+.container.toggle .signin{
+    transform: translateX(100%);
+}
+/* Move Overlay to left */
+.container.toggle .overlay-container{
+    transform: translateX(-100%);
+}
+.container.toggle .overlay {
+    background: #d400d4;
+}
+
+/* Bring Sign Up over Sign In */
+.container.toggle .signup{
+    transform: translateX(100%);
+    opacity: 1;
+    z-index: 5;
+}
+/* Move Overlay Back */
+.container.toggle .overlay{
+    transform: translateX(50%);
+}
+
+
+/* For Buttons */
+
+button{
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 12px 45px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    transition: transform 80ms ease-in;
+}
+
+button:active{
+    transform: scale(0.95);
+}
+
+button:focus{
+    outline: none;
+}
+
+.Sign-In-bt{
+    border: 1px solid #d400d4 ;
+    background: #d400d4 ;
+    color: #fff; 
+    
+}
+
+.Sign-Up-bt{
+    
+    border: 1px solid #45f3ff ;
+    background: #45f3ff ;
+    color: #fff; 
+    
+}
+
+.ghost{
+    background: transparent;
+    border-color: rgb(0, 0, 0);
+}
