@@ -141,7 +141,7 @@ LOGIN_REDIRECT_URL = ''
 LOGOUT_REDIRECT_URL = ''
 LOGIN_URL = 'sign'
 
-CSRF_TRUSTED_ORIGINS = ['https://socialcode-production.up.railway.app/']
+CSRF_TRUSTED_ORIGINS = ['https://socialcode-production.up.railway.app']
 
 
 
